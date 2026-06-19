@@ -12,7 +12,7 @@
             padding: 0;
         }
         :root {
-            --navy: #1a3c5e;
+            --navy: #6e7c8a;
             --navy-mid: #245280;
             --navy-lt: #e8f0f8;
             --teal: #2d8f6f;
@@ -43,6 +43,7 @@
             color: var(--text);
             min-height: 100vh;
             line-height: 1.5;
+            background: #a7a8aa;
         }
         .page {
             display: none;
@@ -164,8 +165,8 @@
         }
         .btn-primary {
             padding: 11px 20px;
-            background: var(--navy);
-            color: #534444;
+            background:rgb(7, 44, 66);
+            color: #ece8e8;
             border: none;
             border-radius: var(--radius-sm);
             font-size: 15px;
@@ -174,7 +175,7 @@
             transition: background .15s;
         }
         .btn-primary:hover {
-            background: var(--navy-mid);
+            background:rgb(109, 145, 55);
         }
         .btn-primary:disabled {
             opacity: 0.6;
@@ -1251,7 +1252,7 @@
     <div id="page-login" class="page active">
         <div class="auth-wrap">
             <div class="auth-logo"><span class="logo-icon"><i class="fas fa-vote-yea"></i></span> VoteSecure <span class="live-badge">LIVE</span></div>
-            <h1 id="login-election-title">Uchaguzi wa Viwango Mbalimbali</h1>
+            <h1 id="login-election-title">Uchaguzi wa viongozi wa Hostel</h1>
             <p class="auth-sub">Ingia kwa namba yako na PIN</p>
             <form id="login-form">
                 <label for="inp-id">Namba ya Mwanachama</label>
@@ -1261,7 +1262,7 @@
                 <div id="login-error" class="alert alert-error hidden"></div>
                 <button type="submit" id="login-btn" class="btn-primary"><i class="fas fa-sign-in-alt"></i> Ingia</button>
             </form>
-            <div class="demo-hint">Demo: M001–M010 / PIN: 1234 &nbsp;|&nbsp; Msimamizi: ADMIN / admin123</div>
+            
         </div>
     </div>
 
