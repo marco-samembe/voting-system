@@ -1,0 +1,1018 @@
+{
+  "election": {
+    "title": "Uchaguzi wa Viwango Mbalimbali 2026",
+    "status": "open"
+  },
+  "settings": {
+    "resultsAccess": true
+  },
+  "roles": [
+    "hostel health",
+    "Head of hostel"
+  ],
+  "candidates": [
+    {
+      "id": "1",
+      "name": "Jackline Alphonce",
+      "role": "hostel health",
+      "party": "Independent",
+      "image": "http://single-hazing-remorse.ngrok-free.dev/uploads/candidate-1781814973698-291178682.jpeg",
+      "votes": 0,
+      "hidden": false
+    },
+    {
+      "id": "2",
+      "name": "John godfrey",
+      "role": "Head of hostel",
+      "party": "Independent",
+      "image": "http://single-hazing-remorse.ngrok-free.dev/uploads/candidate-1781815289213-942178064.jpeg",
+      "votes": 0,
+      "hidden": false
+    },
+    {
+      "id": "3",
+      "name": "Marco Samembe",
+      "role": "Head of hostel",
+      "party": "Independent",
+      "image": "http://single-hazing-remorse.ngrok-free.dev/uploads/candidate-1781857159672-656344721.jpg",
+      "votes": 0,
+      "hidden": false
+    }
+  ],
+  "members": {
+    "M001": {
+      "name": "Amina Hassan",
+      "pin": "1234",
+      "role": "member",
+      "voted": false,
+      "votedFor": []
+    },
+    "M002": {
+      "name": "Joseph Mwenda",
+      "pin": "1234",
+      "role": "member",
+      "voted": false,
+      "votedFor": []
+    },
+    "M003": {
+      "name": "Grace Kapinga",
+      "pin": "1234",
+      "role": "member",
+      "voted": false,
+      "votedFor": []
+    },
+    "M004": {
+      "name": "Peter Nkosi",
+      "pin": "1234",
+      "role": "member",
+      "voted": false,
+      "votedFor": []
+    },
+    "M005": {
+      "name": "Fatuma Said",
+      "pin": "1234",
+      "role": "member",
+      "voted": false,
+      "votedFor": []
+    },
+    "M006": {
+      "name": "Emanuel Kato",
+      "pin": "1234",
+      "role": "member",
+      "voted": false,
+      "votedFor": []
+    },
+    "M007": {
+      "name": "Sarah Kimani",
+      "pin": "1234",
+      "role": "member",
+      "voted": false,
+      "votedFor": []
+    },
+    "M008": {
+      "name": "John Otieno",
+      "pin": "1234",
+      "role": "member",
+      "voted": false,
+      "votedFor": []
+    },
+    "M009": {
+      "name": "Mary Wanjiru",
+      "pin": "1234",
+      "role": "member",
+      "voted": false,
+      "votedFor": []
+    },
+    "M010": {
+      "name": "James Ochieng",
+      "pin": "1234",
+      "role": "member",
+      "voted": false,
+      "votedFor": []
+    },
+    "ADMIN": {
+      "name": "Msimamizi Mkuu",
+      "pin": "admin123",
+      "role": "admin",
+      "voted": false,
+      "votedFor": []
+    },
+    "M011": {
+      "name": "Marco Samembe",
+      "pin": "1234",
+      "role": "member",
+      "voted": false,
+      "votedFor": []
+    }
+  },
+  "auditLog": [
+    {
+      "timestamp": "2026-06-18T00:12:42.709Z",
+      "action": "ELECTION_UPDATED",
+      "memberId": "admin",
+      "detail": "Status: open, Title: undefined"
+    },
+    {
+      "timestamp": "2026-06-18T00:12:57.637Z",
+      "action": "VOTES_RESET",
+      "memberId": "admin",
+      "detail": "All votes reset"
+    },
+    {
+      "timestamp": "2026-06-18T00:35:32.034Z",
+      "action": "SETTINGS_UPDATED",
+      "memberId": "admin",
+      "detail": "Results access: true"
+    },
+    {
+      "timestamp": "2026-06-18T00:35:38.233Z",
+      "action": "SETTINGS_UPDATED",
+      "memberId": "admin",
+      "detail": "Results access: false"
+    },
+    {
+      "timestamp": "2026-06-18T00:35:48.499Z",
+      "action": "ELECTION_UPDATED",
+      "memberId": "admin",
+      "detail": "Status: open, Title: undefined"
+    },
+    {
+      "timestamp": "2026-06-18T00:35:55.444Z",
+      "action": "ELECTION_UPDATED",
+      "memberId": "admin",
+      "detail": "Status: closed, Title: undefined"
+    },
+    {
+      "timestamp": "2026-06-18T00:36:00.605Z",
+      "action": "ELECTION_UPDATED",
+      "memberId": "admin",
+      "detail": "Status: open, Title: undefined"
+    },
+    {
+      "timestamp": "2026-06-18T15:16:26.145Z",
+      "action": "SETTINGS_UPDATED",
+      "memberId": "admin",
+      "detail": "Results access: true"
+    },
+    {
+      "timestamp": "2026-06-18T15:16:31.945Z",
+      "action": "ELECTION_UPDATED",
+      "memberId": "admin",
+      "detail": "Status: open, Title: undefined"
+    },
+    {
+      "timestamp": "2026-06-18T15:17:25.906Z",
+      "action": "SETTINGS_UPDATED",
+      "memberId": "admin",
+      "detail": "Results access: false"
+    },
+    {
+      "timestamp": "2026-06-18T15:17:33.721Z",
+      "action": "SETTINGS_UPDATED",
+      "memberId": "admin",
+      "detail": "Results access: true"
+    },
+    {
+      "timestamp": "2026-06-18T15:18:06.696Z",
+      "action": "SETTINGS_UPDATED",
+      "memberId": "admin",
+      "detail": "Results access: true"
+    },
+    {
+      "timestamp": "2026-06-18T15:18:21.545Z",
+      "action": "ELECTION_UPDATED",
+      "memberId": "admin",
+      "detail": "Status: closed, Title: undefined"
+    },
+    {
+      "timestamp": "2026-06-18T15:18:44.127Z",
+      "action": "VOTES_RESET",
+      "memberId": "admin",
+      "detail": "All votes reset"
+    },
+    {
+      "timestamp": "2026-06-18T15:18:55.775Z",
+      "action": "ELECTION_UPDATED",
+      "memberId": "admin",
+      "detail": "Status: open, Title: undefined"
+    },
+    {
+      "timestamp": "2026-06-18T15:19:27.835Z",
+      "action": "SETTINGS_UPDATED",
+      "memberId": "admin",
+      "detail": "Results access: false"
+    },
+    {
+      "timestamp": "2026-06-18T15:19:47.009Z",
+      "action": "SETTINGS_UPDATED",
+      "memberId": "admin",
+      "detail": "Results access: false"
+    },
+    {
+      "timestamp": "2026-06-18T15:20:20.167Z",
+      "action": "SETTINGS_UPDATED",
+      "memberId": "admin",
+      "detail": "Results access: true"
+    },
+    {
+      "timestamp": "2026-06-18T15:20:33.991Z",
+      "action": "ELECTION_UPDATED",
+      "memberId": "admin",
+      "detail": "Status: open, Title: undefined"
+    },
+    {
+      "timestamp": "2026-06-18T15:21:43.316Z",
+      "action": "MEMBER_ADDED",
+      "memberId": "admin",
+      "detail": "Added M011: Marco Samembe"
+    },
+    {
+      "timestamp": "2026-06-18T15:24:41.179Z",
+      "action": "VOTE_CAST",
+      "memberId": "M001",
+      "detail": "Voted for Baraka Msigwa (Head of Hostels)"
+    },
+    {
+      "timestamp": "2026-06-18T15:28:27.381Z",
+      "action": "SETTINGS_UPDATED",
+      "memberId": "admin",
+      "detail": "Results access: true"
+    },
+    {
+      "timestamp": "2026-06-18T15:28:31.697Z",
+      "action": "SETTINGS_UPDATED",
+      "memberId": "admin",
+      "detail": "Results access: false"
+    },
+    {
+      "timestamp": "2026-06-18T15:29:27.285Z",
+      "action": "SETTINGS_UPDATED",
+      "memberId": "admin",
+      "detail": "Results access: true"
+    },
+    {
+      "timestamp": "2026-06-18T15:29:46.202Z",
+      "action": "SETTINGS_UPDATED",
+      "memberId": "admin",
+      "detail": "Results access: false"
+    },
+    {
+      "timestamp": "2026-06-18T15:31:15.236Z",
+      "action": "SETTINGS_UPDATED",
+      "memberId": "admin",
+      "detail": "Results access: true"
+    },
+    {
+      "timestamp": "2026-06-18T15:31:22.448Z",
+      "action": "SETTINGS_UPDATED",
+      "memberId": "admin",
+      "detail": "Results access: false"
+    },
+    {
+      "timestamp": "2026-06-18T15:31:50.739Z",
+      "action": "SETTINGS_UPDATED",
+      "memberId": "admin",
+      "detail": "Results access: true"
+    },
+    {
+      "timestamp": "2026-06-18T15:32:05.709Z",
+      "action": "SETTINGS_UPDATED",
+      "memberId": "admin",
+      "detail": "Results access: false"
+    },
+    {
+      "timestamp": "2026-06-18T15:33:13.099Z",
+      "action": "ELECTION_UPDATED",
+      "memberId": "admin",
+      "detail": "Status: open, Title: undefined"
+    },
+    {
+      "timestamp": "2026-06-18T15:33:15.014Z",
+      "action": "ELECTION_UPDATED",
+      "memberId": "admin",
+      "detail": "Status: closed, Title: undefined"
+    },
+    {
+      "timestamp": "2026-06-18T15:33:30.759Z",
+      "action": "ELECTION_UPDATED",
+      "memberId": "admin",
+      "detail": "Status: open, Title: undefined"
+    },
+    {
+      "timestamp": "2026-06-18T15:33:41.172Z",
+      "action": "ELECTION_UPDATED",
+      "memberId": "admin",
+      "detail": "Status: closed, Title: undefined"
+    },
+    {
+      "timestamp": "2026-06-18T15:33:46.458Z",
+      "action": "ELECTION_UPDATED",
+      "memberId": "admin",
+      "detail": "Status: open, Title: undefined"
+    },
+    {
+      "timestamp": "2026-06-18T15:34:46.692Z",
+      "action": "SETTINGS_UPDATED",
+      "memberId": "admin",
+      "detail": "Results access: true"
+    },
+    {
+      "timestamp": "2026-06-18T15:34:54.656Z",
+      "action": "ELECTION_UPDATED",
+      "memberId": "admin",
+      "detail": "Status: open, Title: undefined"
+    },
+    {
+      "timestamp": "2026-06-18T15:35:05.834Z",
+      "action": "ELECTION_UPDATED",
+      "memberId": "admin",
+      "detail": "Status: closed, Title: undefined"
+    },
+    {
+      "timestamp": "2026-06-18T17:19:09.685Z",
+      "action": "CANDIDATE_UPDATED",
+      "memberId": "admin",
+      "detail": "Updated James Ochieng"
+    },
+    {
+      "timestamp": "2026-06-18T17:19:10.488Z",
+      "action": "CANDIDATE_UPDATED",
+      "memberId": "admin",
+      "detail": "Updated Victor Odhiambo"
+    },
+    {
+      "timestamp": "2026-06-18T17:19:11.514Z",
+      "action": "CANDIDATE_UPDATED",
+      "memberId": "admin",
+      "detail": "Updated Ruth Auma"
+    },
+    {
+      "timestamp": "2026-06-18T17:19:12.364Z",
+      "action": "CANDIDATE_UPDATED",
+      "memberId": "admin",
+      "detail": "Updated Kenneth Omondi"
+    },
+    {
+      "timestamp": "2026-06-18T17:19:15.608Z",
+      "action": "CANDIDATE_UPDATED",
+      "memberId": "admin",
+      "detail": "Updated Brian Odhiambo"
+    },
+    {
+      "timestamp": "2026-06-18T17:19:17.387Z",
+      "action": "ELECTION_UPDATED",
+      "memberId": "admin",
+      "detail": "Status: undefined, Title: Uchaguzi wa Viwango Mbalimbali 2026"
+    },
+    {
+      "timestamp": "2026-06-18T17:19:28.382Z",
+      "action": "CANDIDATE_REMOVED",
+      "memberId": "admin",
+      "detail": "Removed Brian Odhiambo (Mgeni)"
+    },
+    {
+      "timestamp": "2026-06-18T17:19:35.404Z",
+      "action": "CANDIDATE_REMOVED",
+      "memberId": "admin",
+      "detail": "Removed Kenneth Omondi (Mgeni)"
+    },
+    {
+      "timestamp": "2026-06-18T17:19:46.173Z",
+      "action": "CANDIDATE_REMOVED",
+      "memberId": "admin",
+      "detail": "Removed Ruth Auma (Mgeni)"
+    },
+    {
+      "timestamp": "2026-06-18T17:20:20.844Z",
+      "action": "CANDIDATE_REMOVED",
+      "memberId": "admin",
+      "detail": "Removed Victor Odhiambo (Mgeni)"
+    },
+    {
+      "timestamp": "2026-06-18T17:20:28.516Z",
+      "action": "CANDIDATE_REMOVED",
+      "memberId": "admin",
+      "detail": "Removed Jane Akinyi (Academic Representative)"
+    },
+    {
+      "timestamp": "2026-06-18T17:20:38.813Z",
+      "action": "CANDIDATE_REMOVED",
+      "memberId": "admin",
+      "detail": "Removed James Ochieng (Mgeni)"
+    },
+    {
+      "timestamp": "2026-06-18T17:20:47.764Z",
+      "action": "CANDIDATE_REMOVED",
+      "memberId": "admin",
+      "detail": "Removed Peter Mwangi (Academic Representative)"
+    },
+    {
+      "timestamp": "2026-06-18T17:21:06.627Z",
+      "action": "CANDIDATE_UPDATED",
+      "memberId": "admin",
+      "detail": "Updated Baraka Msigwa"
+    },
+    {
+      "timestamp": "2026-06-18T17:21:08.327Z",
+      "action": "CANDIDATE_UPDATED",
+      "memberId": "admin",
+      "detail": "Updated Baraka Msigwa"
+    },
+    {
+      "timestamp": "2026-06-18T17:21:09.693Z",
+      "action": "CANDIDATE_UPDATED",
+      "memberId": "admin",
+      "detail": "Updated Rehema Lyimo"
+    },
+    {
+      "timestamp": "2026-06-18T17:21:15.111Z",
+      "action": "CANDIDATE_UPDATED",
+      "memberId": "admin",
+      "detail": "Updated Baraka Msigwa"
+    },
+    {
+      "timestamp": "2026-06-18T17:21:18.623Z",
+      "action": "CANDIDATE_UPDATED",
+      "memberId": "admin",
+      "detail": "Updated Baraka Msigwa"
+    },
+    {
+      "timestamp": "2026-06-18T17:21:22.073Z",
+      "action": "CANDIDATE_UPDATED",
+      "memberId": "admin",
+      "detail": "Updated Rehema Lyimo"
+    },
+    {
+      "timestamp": "2026-06-18T17:21:26.212Z",
+      "action": "CANDIDATE_UPDATED",
+      "memberId": "admin",
+      "detail": "Updated Rehema Lyimo"
+    },
+    {
+      "timestamp": "2026-06-18T17:21:29.090Z",
+      "action": "CANDIDATE_UPDATED",
+      "memberId": "admin",
+      "detail": "Updated Daniel Chuma"
+    },
+    {
+      "timestamp": "2026-06-18T17:21:29.886Z",
+      "action": "CANDIDATE_UPDATED",
+      "memberId": "admin",
+      "detail": "Updated Daniel Chuma"
+    },
+    {
+      "timestamp": "2026-06-18T17:21:39.092Z",
+      "action": "CANDIDATE_UPDATED",
+      "memberId": "admin",
+      "detail": "Updated Salma Juma"
+    },
+    {
+      "timestamp": "2026-06-18T17:21:40.291Z",
+      "action": "CANDIDATE_UPDATED",
+      "memberId": "admin",
+      "detail": "Updated Salma Juma"
+    },
+    {
+      "timestamp": "2026-06-18T17:23:07.627Z",
+      "action": "ELECTION_UPDATED",
+      "memberId": "admin",
+      "detail": "Status: undefined, Title: Uchaguzi wa Viwango Mbalimbali 2026"
+    },
+    {
+      "timestamp": "2026-06-18T17:23:33.392Z",
+      "action": "ELECTION_UPDATED",
+      "memberId": "admin",
+      "detail": "Status: open, Title: undefined"
+    },
+    {
+      "timestamp": "2026-06-18T17:29:28.730Z",
+      "action": "VOTES_RESET",
+      "memberId": "admin",
+      "detail": "All votes reset"
+    },
+    {
+      "timestamp": "2026-06-18T17:38:55.320Z",
+      "action": "SETTINGS_UPDATED",
+      "memberId": "admin",
+      "detail": "Results access: false"
+    },
+    {
+      "timestamp": "2026-06-18T17:44:47.669Z",
+      "action": "ELECTION_UPDATED",
+      "memberId": "admin",
+      "detail": "Status: undefined, Title: Uchaguzi wa Viwango Mbalimbali 2026"
+    },
+    {
+      "timestamp": "2026-06-18T17:49:16.313Z",
+      "action": "SETTINGS_UPDATED",
+      "memberId": "admin",
+      "detail": "Results access: true"
+    },
+    {
+      "timestamp": "2026-06-18T17:53:25.225Z",
+      "action": "SETTINGS_UPDATED",
+      "memberId": "admin",
+      "detail": "Results access: false"
+    },
+    {
+      "timestamp": "2026-06-18T17:56:01.017Z",
+      "action": "ELECTION_UPDATED",
+      "memberId": "admin",
+      "detail": "Status: open, Title: undefined"
+    },
+    {
+      "timestamp": "2026-06-18T17:56:03.442Z",
+      "action": "ELECTION_UPDATED",
+      "memberId": "admin",
+      "detail": "Status: closed, Title: undefined"
+    },
+    {
+      "timestamp": "2026-06-18T17:56:26.214Z",
+      "action": "SETTINGS_UPDATED",
+      "memberId": "admin",
+      "detail": "Results access: true"
+    },
+    {
+      "timestamp": "2026-06-18T17:56:33.156Z",
+      "action": "SETTINGS_UPDATED",
+      "memberId": "admin",
+      "detail": "Results access: false"
+    },
+    {
+      "timestamp": "2026-06-18T17:56:43.344Z",
+      "action": "ELECTION_UPDATED",
+      "memberId": "admin",
+      "detail": "Status: open, Title: undefined"
+    },
+    {
+      "timestamp": "2026-06-18T17:56:56.450Z",
+      "action": "CANDIDATE_REMOVED",
+      "memberId": "admin",
+      "detail": "Removed Baraka Msigwa (Head of Hostels)"
+    },
+    {
+      "timestamp": "2026-06-18T17:58:09.948Z",
+      "action": "VOTE_CAST",
+      "memberId": "M001",
+      "detail": "Voted for Rehema Lyimo (Head of Hostels)"
+    },
+    {
+      "timestamp": "2026-06-18T18:10:24.068Z",
+      "action": "VOTE_CAST",
+      "memberId": "M002",
+      "detail": "Voted for Rehema Lyimo (Head of Hostels)"
+    },
+    {
+      "timestamp": "2026-06-18T19:01:54.745Z",
+      "action": "ELECTION_UPDATED",
+      "memberId": "admin",
+      "detail": "Status: undefined, Title: Uchaguzi wa Viwango Mbalimbali 2026"
+    },
+    {
+      "timestamp": "2026-06-18T19:01:54.755Z",
+      "action": "ELECTION_UPDATED",
+      "memberId": "admin",
+      "detail": "Status: undefined, Title: Uchaguzi wa Viwango Mbalimbali 2026"
+    },
+    {
+      "timestamp": "2026-06-18T19:01:56.772Z",
+      "action": "ELECTION_UPDATED",
+      "memberId": "admin",
+      "detail": "Status: undefined, Title: Uchaguzi wa Viwango Mbalimbali 2026"
+    },
+    {
+      "timestamp": "2026-06-18T19:02:24.377Z",
+      "action": "SETTINGS_UPDATED",
+      "memberId": "admin",
+      "detail": "Results access: true"
+    },
+    {
+      "timestamp": "2026-06-18T19:03:27.468Z",
+      "action": "VOTE_CAST",
+      "memberId": "M003",
+      "detail": "Voted for Rehema Lyimo (Head of Hostels)"
+    },
+    {
+      "timestamp": "2026-06-18T19:03:28.392Z",
+      "action": "VOTE_CAST",
+      "memberId": "M003",
+      "detail": "Voted for Grace Kapinga (Girls Representative)"
+    },
+    {
+      "timestamp": "2026-06-18T19:03:31.280Z",
+      "action": "VOTE_CAST",
+      "memberId": "M003",
+      "detail": "Voted for Sarah Kimani (Academic Representative)"
+    },
+    {
+      "timestamp": "2026-06-18T19:03:46.884Z",
+      "action": "VOTES_RESET",
+      "memberId": "admin",
+      "detail": "All votes reset"
+    },
+    {
+      "timestamp": "2026-06-18T19:04:31.221Z",
+      "action": "VOTE_CAST",
+      "memberId": "M003",
+      "detail": "Voted for Rehema Lyimo (Head of Hostels)"
+    },
+    {
+      "timestamp": "2026-06-18T19:04:33.266Z",
+      "action": "VOTE_CAST",
+      "memberId": "M003",
+      "detail": "Voted for Grace Kapinga (Girls Representative)"
+    },
+    {
+      "timestamp": "2026-06-18T19:04:40.172Z",
+      "action": "VOTE_CAST",
+      "memberId": "M003",
+      "detail": "Voted for Sarah Kimani (Academic Representative)"
+    },
+    {
+      "timestamp": "2026-06-18T19:04:47.051Z",
+      "action": "SETTINGS_UPDATED",
+      "memberId": "admin",
+      "detail": "Results access: false"
+    },
+    {
+      "timestamp": "2026-06-18T19:04:47.813Z",
+      "action": "SETTINGS_UPDATED",
+      "memberId": "admin",
+      "detail": "Results access: false"
+    },
+    {
+      "timestamp": "2026-06-18T19:05:23.760Z",
+      "action": "VOTE_CAST",
+      "memberId": "M002",
+      "detail": "Voted for Rehema Lyimo (Head of Hostels)"
+    },
+    {
+      "timestamp": "2026-06-18T19:05:24.777Z",
+      "action": "VOTE_CAST",
+      "memberId": "M002",
+      "detail": "Voted for Amina Hassan (Girls Representative)"
+    },
+    {
+      "timestamp": "2026-06-18T19:05:25.443Z",
+      "action": "VOTE_CAST",
+      "memberId": "M002",
+      "detail": "Voted for Samwel Mkude (Boys Representative)"
+    },
+    {
+      "timestamp": "2026-06-18T19:05:26.271Z",
+      "action": "VOTE_CAST",
+      "memberId": "M002",
+      "detail": "Voted for Mary Wanjiru (Academic Representative)"
+    },
+    {
+      "timestamp": "2026-06-18T19:06:41.802Z",
+      "action": "VOTE_CAST",
+      "memberId": "M001",
+      "detail": "Voted for Rehema Lyimo (Head of Hostels)"
+    },
+    {
+      "timestamp": "2026-06-18T19:06:43.585Z",
+      "action": "VOTE_CAST",
+      "memberId": "M001",
+      "detail": "Voted for Zainab Ali (Girls Representative)"
+    },
+    {
+      "timestamp": "2026-06-18T19:06:47.255Z",
+      "action": "VOTE_CAST",
+      "memberId": "M001",
+      "detail": "Voted for David Mushi (Boys Representative)"
+    },
+    {
+      "timestamp": "2026-06-18T19:06:48.761Z",
+      "action": "VOTE_CAST",
+      "memberId": "M001",
+      "detail": "Voted for Mary Wanjiru (Academic Representative)"
+    },
+    {
+      "timestamp": "2026-06-18T19:08:51.688Z",
+      "action": "SETTINGS_UPDATED",
+      "memberId": "admin",
+      "detail": "Results access: true"
+    },
+    {
+      "timestamp": "2026-06-18T19:09:03.700Z",
+      "action": "SETTINGS_UPDATED",
+      "memberId": "admin",
+      "detail": "Results access: false"
+    },
+    {
+      "timestamp": "2026-06-18T19:25:45.781Z",
+      "action": "SETTINGS_UPDATED",
+      "memberId": "admin",
+      "detail": "Results access: true"
+    },
+    {
+      "timestamp": "2026-06-18T19:36:55.369Z",
+      "action": "CANDIDATE_ADDED",
+      "memberId": "admin",
+      "detail": "Added jackline alphonce (hostel health)"
+    },
+    {
+      "timestamp": "2026-06-18T19:45:53.446Z",
+      "action": "VOTE_CAST",
+      "memberId": "M004",
+      "detail": "Voted for Rehema Lyimo (Head of Hostels)"
+    },
+    {
+      "timestamp": "2026-06-18T19:45:56.797Z",
+      "action": "VOTE_CAST",
+      "memberId": "M004",
+      "detail": "Voted for Joseph Mwenda (Boys Representative)"
+    },
+    {
+      "timestamp": "2026-06-18T19:45:57.611Z",
+      "action": "VOTE_CAST",
+      "memberId": "M004",
+      "detail": "Voted for Sarah Kimani (Academic Representative)"
+    },
+    {
+      "timestamp": "2026-06-18T19:46:34.759Z",
+      "action": "CANDIDATE_REMOVED",
+      "memberId": "admin",
+      "detail": "Removed John Otieno (Academic Representative)"
+    },
+    {
+      "timestamp": "2026-06-18T19:46:38.701Z",
+      "action": "CANDIDATE_REMOVED",
+      "memberId": "admin",
+      "detail": "Removed Sarah Kimani (Academic Representative)"
+    },
+    {
+      "timestamp": "2026-06-18T19:46:43.147Z",
+      "action": "CANDIDATE_REMOVED",
+      "memberId": "admin",
+      "detail": "Removed Michael John (Boys Representative)"
+    },
+    {
+      "timestamp": "2026-06-18T19:46:48.487Z",
+      "action": "CANDIDATE_REMOVED",
+      "memberId": "admin",
+      "detail": "Removed David Mushi (Boys Representative)"
+    },
+    {
+      "timestamp": "2026-06-18T19:46:56.887Z",
+      "action": "CANDIDATE_REMOVED",
+      "memberId": "admin",
+      "detail": "Removed Samwel Mkude (Boys Representative)"
+    },
+    {
+      "timestamp": "2026-06-18T20:17:00.195Z",
+      "action": "CANDIDATE_VOTES_RESET",
+      "memberId": "admin",
+      "detail": "All candidate votes reset to 0"
+    },
+    {
+      "timestamp": "2026-06-18T20:19:10.422Z",
+      "action": "VOTE_CAST",
+      "memberId": "M003",
+      "detail": "Voted for Rehema Lyimo (Head of Hostels)"
+    },
+    {
+      "timestamp": "2026-06-18T20:19:14.649Z",
+      "action": "VOTE_CAST",
+      "memberId": "M003",
+      "detail": "Voted for Joseph Mwenda (Boys Representative)"
+    },
+    {
+      "timestamp": "2026-06-18T20:19:16.008Z",
+      "action": "VOTE_CAST",
+      "memberId": "M003",
+      "detail": "Voted for Mary Wanjiru (Academic Representative)"
+    },
+    {
+      "timestamp": "2026-06-18T20:19:41.370Z",
+      "action": "VOTE_CAST",
+      "memberId": "M003",
+      "detail": "Voted for Grace Kapinga (Girls Representative)"
+    },
+    {
+      "timestamp": "2026-06-18T20:27:34.384Z",
+      "action": "SETTINGS_UPDATED",
+      "memberId": "admin",
+      "detail": "Results access: false"
+    },
+    {
+      "timestamp": "2026-06-18T20:30:41.820Z",
+      "action": "CANDIDATE_REMOVED",
+      "memberId": "admin",
+      "detail": "Removed Mary Wanjiru (Academic Representative)"
+    },
+    {
+      "timestamp": "2026-06-18T20:32:15.901Z",
+      "action": "VOTE_CAST",
+      "memberId": "M003",
+      "detail": "Voted for jackline alphonce (hostel health)"
+    },
+    {
+      "timestamp": "2026-06-18T20:33:36.236Z",
+      "action": "CANDIDATE_REMOVED",
+      "memberId": "admin",
+      "detail": "Removed Daniel Chuma (Head of Hostels)"
+    },
+    {
+      "timestamp": "2026-06-18T20:33:52.959Z",
+      "action": "CANDIDATE_REMOVED",
+      "memberId": "admin",
+      "detail": "Removed Salma Juma (Head of Hostels)"
+    },
+    {
+      "timestamp": "2026-06-18T20:33:53.698Z",
+      "action": "CANDIDATE_REMOVED",
+      "memberId": "admin",
+      "detail": "Removed Rehema Lyimo (Head of Hostels)"
+    },
+    {
+      "timestamp": "2026-06-18T20:34:53.758Z",
+      "action": "ALL_CANDIDATES_DELETED",
+      "memberId": "admin",
+      "detail": "Deleted 9 candidates"
+    },
+    {
+      "timestamp": "2026-06-18T20:36:24.229Z",
+      "action": "CANDIDATE_ADDED",
+      "memberId": "admin",
+      "detail": "Added Jackline Alphonce (hostel health)"
+    },
+    {
+      "timestamp": "2026-06-18T20:36:30.904Z",
+      "action": "CANDIDATE_ADDED",
+      "memberId": "admin",
+      "detail": "Added Jackline Alphonce (hostel health)"
+    },
+    {
+      "timestamp": "2026-06-18T20:36:33.759Z",
+      "action": "CANDIDATE_ADDED",
+      "memberId": "admin",
+      "detail": "Added Jackline Alphonce (hostel health)"
+    },
+    {
+      "timestamp": "2026-06-18T20:36:52.228Z",
+      "action": "CANDIDATE_REMOVED",
+      "memberId": "admin",
+      "detail": "Removed Jackline Alphonce (hostel health)"
+    },
+    {
+      "timestamp": "2026-06-18T20:37:55.817Z",
+      "action": "CANDIDATE_REMOVED",
+      "memberId": "admin",
+      "detail": "Removed Jackline Alphonce (hostel health)"
+    },
+    {
+      "timestamp": "2026-06-18T20:39:14.245Z",
+      "action": "VOTES_RESET",
+      "memberId": "admin",
+      "detail": "All votes reset"
+    },
+    {
+      "timestamp": "2026-06-18T20:39:24.449Z",
+      "action": "VOTE_CAST",
+      "memberId": "M003",
+      "detail": "Voted for Jackline Alphonce (hostel health)"
+    },
+    {
+      "timestamp": "2026-06-18T20:39:55.928Z",
+      "action": "VOTES_RESET",
+      "memberId": "admin",
+      "detail": "All votes reset"
+    },
+    {
+      "timestamp": "2026-06-18T20:40:14.121Z",
+      "action": "VOTE_CAST",
+      "memberId": "M003",
+      "detail": "Voted for Jackline Alphonce (hostel health)"
+    },
+    {
+      "timestamp": "2026-06-18T20:40:40.375Z",
+      "action": "ROLES_UPDATED",
+      "memberId": "admin",
+      "detail": "add role: Head of hostel "
+    },
+    {
+      "timestamp": "2026-06-18T20:41:30.314Z",
+      "action": "CANDIDATE_ADDED",
+      "memberId": "admin",
+      "detail": "Added John godfrey (Head of hostel)"
+    },
+    {
+      "timestamp": "2026-06-18T20:43:05.439Z",
+      "action": "VOTE_CAST",
+      "memberId": "M001",
+      "detail": "Voted for Jackline Alphonce (hostel health)"
+    },
+    {
+      "timestamp": "2026-06-18T20:43:06.197Z",
+      "action": "VOTE_CAST",
+      "memberId": "M001",
+      "detail": "Voted for John godfrey (Head of hostel)"
+    },
+    {
+      "timestamp": "2026-06-18T20:43:51.939Z",
+      "action": "ELECTION_UPDATED",
+      "memberId": "admin",
+      "detail": "Updated election details"
+    },
+    {
+      "timestamp": "2026-06-18T20:46:39.354Z",
+      "action": "VOTE_CAST",
+      "memberId": "M002",
+      "detail": "Voted for Jackline Alphonce (hostel health)"
+    },
+    {
+      "timestamp": "2026-06-18T20:46:40.135Z",
+      "action": "VOTE_CAST",
+      "memberId": "M002",
+      "detail": "Voted for John godfrey (Head of hostel)"
+    },
+    {
+      "timestamp": "2026-06-19T08:20:11.501Z",
+      "action": "CANDIDATE_ADDED",
+      "memberId": "admin",
+      "detail": "Added Marco Samembe (Head of hostel)"
+    },
+    {
+      "timestamp": "2026-06-19T08:20:35.451Z",
+      "action": "CANDIDATE_UPDATED",
+      "memberId": "admin",
+      "detail": "Updated Marco Samembe"
+    },
+    {
+      "timestamp": "2026-06-19T08:20:39.280Z",
+      "action": "CANDIDATE_UPDATED",
+      "memberId": "admin",
+      "detail": "Updated Marco Samembe"
+    },
+    {
+      "timestamp": "2026-06-19T08:20:41.753Z",
+      "action": "CANDIDATE_UPDATED",
+      "memberId": "admin",
+      "detail": "Updated Marco Samembe"
+    },
+    {
+      "timestamp": "2026-06-19T08:21:01.560Z",
+      "action": "VOTES_RESET",
+      "memberId": "admin",
+      "detail": "All votes reset"
+    },
+    {
+      "timestamp": "2026-06-19T08:22:25.835Z",
+      "action": "VOTE_CAST",
+      "memberId": "M001",
+      "detail": "Voted for Jackline Alphonce (hostel health)"
+    },
+    {
+      "timestamp": "2026-06-19T08:22:26.606Z",
+      "action": "VOTE_CAST",
+      "memberId": "M001",
+      "detail": "Voted for Marco Samembe (Head of hostel)"
+    },
+    {
+      "timestamp": "2026-06-19T08:26:43.961Z",
+      "action": "VOTE_CAST",
+      "memberId": "M003",
+      "detail": "Voted for Jackline Alphonce (hostel health)"
+    },
+    {
+      "timestamp": "2026-06-19T08:26:44.788Z",
+      "action": "VOTE_CAST",
+      "memberId": "M003",
+      "detail": "Voted for John godfrey (Head of hostel)"
+    },
+    {
+      "timestamp": "2026-06-19T08:52:24.769Z",
+      "action": "VOTES_RESET",
+      "memberId": "admin",
+      "detail": "All votes reset"
+    },
+    {
+      "timestamp": "2026-06-19T08:55:29.689Z",
+      "action": "SETTINGS_UPDATED",
+      "memberId": "admin",
+      "detail": "Results access: true"
+    }
+  ]
+}
