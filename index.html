@@ -12,7 +12,7 @@
             padding: 0;
         }
         :root {
-            --navy: #6e7c8a;
+            --navy: #182533;
             --navy-mid: #245280;
             --navy-lt: #e8f0f8;
             --teal: #2d8f6f;
@@ -25,10 +25,10 @@
             --gray-100: #f1f5f9;
             --gray-200: #e2e8f0;
             --gray-400: #94a3b8;
-            --gray-600: #475569;
+            --gray-600: #172e50;
             --gray-800: #1e293b;
             --text: #1e293b;
-            --text-muted: #64748b;
+            --text-muted: #17273d;
             --bg: #f8fafc;
             --radius: 10px;
             --radius-sm: 6px;
@@ -229,15 +229,15 @@
             background: #9a3b07;
         }
         .btn-results-toggle {
-            background: var(--teal);
+            background: var(--red);
             color: #fff;
-            border-color: var(--teal);
+            border-color: var(--red);
             padding: 6px 16px;
             font-weight: 600;
         }
         .btn-results-toggle.off {
-            background: var(--red);
-            border-color: var(--red);
+            background: var(--teal);
+            border-color: var(--teal);
         }
         .btn-results-toggle:hover {
             opacity: 0.85;
@@ -368,7 +368,7 @@
             margin: 1rem 0;
         }
         .candidate-card {
-            background: #fff;
+            background: #1ed4d4;
             border: 2px solid var(--gray-200);
             border-radius: var(--radius);
             padding: 16px;
@@ -430,7 +430,7 @@
         }
         .cand-party {
             font-size: 12px;
-            color: var(--gray-400);
+            color:white;
             margin-top: 2px;
         }
         .cand-votes {
@@ -452,6 +452,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            background: wheat;
         }
         .candidate-card.selected .radio-dot {
             border-color: var(--navy);
@@ -542,7 +543,7 @@
             gap: 1.25rem;
         }
         .admin-card {
-            background: #fff;
+            background: #d6d5d5;
             border: 1.5px solid var(--gray-200);
             border-radius: var(--radius);
             padding: 1.25rem 1.5rem;
@@ -1256,7 +1257,7 @@
             <p class="auth-sub">Ingia kwa namba yako na PIN</p>
             <form id="login-form">
                 <label for="inp-id">Namba ya Mwanachama</label>
-                <input id="inp-id" type="text" placeholder="mfano M001" />
+                <input id="inp-id" type="text" placeholder="Mfano M7878" />
                 <label for="inp-pin">PIN</label>
                 <input id="inp-pin" type="password" placeholder="Weka PIN yako" />
                 <div id="login-error" class="alert alert-error hidden"></div>
@@ -1382,7 +1383,6 @@
                     <section class="admin-card">
                         <h3><i class="fas fa-users"></i> Wanachama <span class="count-badge" id="member-count">0</span></h3>
                         <div class="bulk-actions">
-                            <button class="btn-sm btn-danger" onclick="deleteAllMembers()"><i class="fas fa-trash-alt"></i> Futa Wote</button>
                         </div>
                         <div class="search-box">
                             <input type="text" id="member-search" placeholder="Tafuta mwanachama..." oninput="filterMembers()" />
@@ -1416,7 +1416,6 @@
                     <section class="admin-card">
                         <h3><i class="fas fa-user-tie"></i> Wagombea <span class="count-badge" id="cand-count">0</span></h3>
                         <div class="bulk-actions">
-                            <button class="btn-sm btn-danger" onclick="deleteAllCandidates()"><i class="fas fa-trash-alt"></i> Futa Wote</button>
                             <button class="btn-sm btn-warning" onclick="deleteCandidatesByRole()"><i class="fas fa-filter"></i> Futa kwa Nafasi</button>
                             <button class="btn-sm btn-success" onclick="resetAllCandidateVotes()"><i class="fas fa-undo"></i> Weka Kura Sifuri</button>
                         </div>
