@@ -1,4 +1,4 @@
-# Mfumo wa Kupiga Kura - Viwango Mbalimbali
+# Mfumo wa Kupiga Kura 
 
 Mfumo kamili wa kupiga kura wenye vyeo tofauti (Head of Hostels, Girls Representative, Boys Representative, Academic Representative, Sports Representative) na wagombea 5 kwa kila cheo.
 
