@@ -122,9 +122,9 @@ function initDB() {
         election: { 
             title: 'Uchaguzi wa Viongozi wa hosteli 2026', 
             status: 'open',
-            description: '',
-            startDate: '',
-            endDate: ''
+            description: 'Uchaguzi wa viongozi wa hosteli mwaka 2026',
+            startDate: '2026-06-20T08:00:00',
+            endDate: '2026-06-25T17:00:00'
         },
         settings: { resultsAccess: false },
         roles: ['Head of Hostels', 'Girls Representative', 'Boys Representative', 'Academic Representative', 'Sports Representative'],
@@ -550,6 +550,45 @@ app.patch('/api/admin/roles', (req, res) => {
 });
 
 // ============================================================
+// PATCH /api/admin/members/:id - Update member details
+// ============================================================
+app.patch('/api/admin/members/:id', (req, res) => {
+    const db = readDB();
+    const id = req.params.id.toUpperCase();
+    const member = db.members[id];
+    if (!member) return res.status(404).json({ error: 'Member not found' });
+    
+    const { name, voted } = req.body;
+    if (name !== undefined) member.name = name;
+    if (voted !== undefined) member.voted = voted;
+    
+    db.auditLog.push({ 
+        timestamp: new Date().toISOString(), 
+        action: 'MEMBER_UPDATED', 
+        memberId: 'admin', 
+        detail: `Updated ${id}` 
+    });
+    writeDB(db);
+    res.json({ success: true, member });
+});
+
+// ============================================================
+// PATCH /api/admin/members/:id/voted - Update member voted status
+// ============================================================
+app.patch('/api/admin/members/:id/voted', (req, res) => {
+    const db = readDB();
+    const id = req.params.id.toUpperCase();
+    const member = db.members[id];
+    if (!member) return res.status(404).json({ error: 'Member not found' });
+    
+    const { voted } = req.body;
+    if (voted !== undefined) member.voted = voted;
+    
+    writeDB(db);
+    res.json({ success: true, member });
+});
+
+// ============================================================
 // START SERVER
 // ============================================================
 const server = app.listen(PORT, '0.0.0.0', () => {
@@ -584,4 +623,35 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, ngrok-skip-browser-warning');
     res.setHeader('ngrok-skip-browser-warning', 'true');
     next();
+});
+
+// SSE - SERVER SENT EVENTS
+app.get('/api/events', (req, res) => {
+    res.setHeader('Content-Type', 'text/event-stream');
+    res.setHeader('Cache-Control', 'no-cache');
+    res.setHeader('Connection', 'keep-alive');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('ngrok-skip-browser-warning', 'true');
+
+    const clientId = Date.now();
+    const newClient = { id: clientId, res: res };
+    clients.push(newClient);
+    console.log(`✅ Client ${clientId} connected. Total clients: ${clients.length}`);
+
+    res.write(`data: ${JSON.stringify({ type: 'connected', message: 'Connected to live updates' })}\n\n`);
+
+    // ONGEZA HEARTBEAT KILA SEKUNDE 15
+    const heartbeatInterval = setInterval(() => {
+        try {
+            res.write(`data: ${JSON.stringify({ type: 'heartbeat', timestamp: Date.now() })}\n\n`);
+        } catch (err) {
+            clearInterval(heartbeatInterval);
+        }
+    }, 15000);
+
+    req.on('close', () => {
+        clearInterval(heartbeatInterval);
+        clients = clients.filter(client => client.id !== clientId);
+        console.log(`❌ Client ${clientId} disconnected. Total clients: ${clients.length}`);
+    });
 });

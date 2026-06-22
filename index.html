@@ -577,8 +577,8 @@
             gap: 4px;
         }
         .admin-row-item img {
-            width: 28px;
-            height: 28px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             object-fit: cover;
             margin-right: 8px;
@@ -955,8 +955,8 @@
             gap: 8px;
         }
         .result-name img {
-            width: 30px;
-            height: 30px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid var(--gray-200);
@@ -1596,8 +1596,8 @@
                 grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
             }
             .candidate-card img {
-                width: 60px;
-                height: 60px;
+                width: 90px;
+                height: 90px;
             }
             .cand-name {
                 font-size: 12px;
@@ -1762,7 +1762,6 @@
                 <div class="top-bar-right">
                     <span class="member-badge" id="ballot-user-badge"></span>
                     <span class="sync-status live" id="sync-status-ballot"><i class="fas fa-circle"></i> LIVE</span>
-                    <span class="rt-badge">⚡REAL-TIME</span>
                     <button class="btn-ghost" onclick="openSettings()"><i class="fas fa-cog"></i></button>
                     <button class="btn-ghost" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Toka</button>
                 </div>
@@ -1831,7 +1830,6 @@
                 <div class="top-logo"><i class="fas fa-user-cog"></i> Paneli ya Msimamizi <span class="live-badge">LIVE</span></div>
                 <div class="top-bar-right">
                     <span class="sync-status live" id="sync-status-admin"><i class="fas fa-circle"></i> LIVE</span>
-                    <span class="rt-badge">⚡REAL-TIME</span>
                     <span class="data-version" id="data-version-admin">v1.0.0</span>
                     <button class="btn-ghost" onclick="showAdminResults()"><i class="fas fa-chart-bar"></i> Matokeo</button>
                     <button class="btn-ghost" onclick="openChangePassword()"><i class="fas fa-key"></i> Badilisha PIN</button>
@@ -1953,6 +1951,454 @@
                             <button type="submit" class="btn-sm btn-primary"><i class="fas fa-plus"></i> <span class="lang-sw">Ongeza</span><span class="lang-en">Add</span></button>
                         </form>
                     </section>
+                    
+        <!-- ============================================================
+     HIDDEN CANDIDATES MANAGEMENT - PANELI KAMILI
+     ============================================================ -->
+<section class="admin-card">
+    <h3>
+        <i class="fas fa-eye-slash"></i> 
+        <span class="lang-sw">Kuficha/Kuonyesha Wagombea</span>
+        <span class="lang-en">Hide/Show Candidates</span> 
+        <span class="count-badge" id="hidden-cand-count">0</span>
+    </h3>
+    
+    <!-- Hidden Candidates Controls -->
+    <div class="results-access-control" style="margin-bottom:12px;flex-wrap:wrap;">
+        <span class="status-label">
+            <span class="lang-sw">Waliofichwa:</span>
+            <span class="lang-en">Hidden:</span>
+        </span>
+        <span class="status-indicator" id="hidden-status">0</span>
+        
+        <button class="btn-sm btn-results-toggle" onclick="toggleHiddenList()" id="toggle-hidden-btn">
+            <i class="fas fa-eye"></i> 
+            <span class="lang-sw">Onyesha Waliofichwa</span>
+            <span class="lang-en">Show Hidden</span>
+        </button>
+        
+        <button class="btn-sm btn-danger" onclick="hideAllCandidates()" style="background:var(--red);border-color:var(--red);">
+            <i class="fas fa-eye-slash"></i> 
+            <span class="lang-sw">Ficha Wote</span>
+            <span class="lang-en">Hide All</span>
+        </button>
+        
+        <button class="btn-sm btn-success" onclick="unhideAllCandidates()" style="background:var(--teal);border-color:var(--teal);">
+            <i class="fas fa-eye"></i> 
+            <span class="lang-sw">Onyesha Wote</span>
+            <span class="lang-en">Show All</span>
+        </button>
+        
+        <button class="btn-sm btn-warning" onclick="hideByRole()" style="background:var(--amber);border-color:var(--amber);">
+            <i class="fas fa-filter"></i> 
+            <span class="lang-sw">Ficha kwa Nafasi</span>
+            <span class="lang-en">Hide by Role</span>
+        </button>
+    </div>
+    
+    <!-- Hidden Candidates List -->
+    <div id="hidden-candidates-list" class="admin-list" style="max-height:300px;overflow-y:auto;"></div>
+    
+    <p style="font-size:11px;color:var(--text-muted);margin-top:6px;border-top:1px solid var(--gray-200);padding-top:8px;">
+        <i class="fas fa-info-circle"></i> 
+        <span class="lang-sw">Wagombea waliofichwa hawaonekani kwa wapiga kura. Wanaonekana tu hapa.</span>
+        <span class="lang-en">Hidden candidates are not visible to voters. They only appear here.</span>
+    </p>
+</section>
+
+<script>
+// ============================================================
+// HIDDEN CANDIDATES MANAGEMENT - CODE KAMILI
+// ============================================================
+
+let showHiddenList = false;
+
+// ============================================================
+// FUNCTIONS ZA MSINGI
+// ============================================================
+
+function getHiddenCandidates() {
+    return allCandidates.filter(c => c.hidden === true);
+}
+
+function getVisibleCandidates() {
+    return allCandidates.filter(c => !c.hidden);
+}
+
+function getHiddenCount() {
+    return getHiddenCandidates().length;
+}
+
+// ============================================================
+// RENDER HIDDEN CANDIDATES LIST
+// ============================================================
+
+function renderHiddenCandidates() {
+    const hiddenCandidates = getHiddenCandidates();
+    const count = hiddenCandidates.length;
+    
+    // Update counts
+    const countEl = document.getElementById('hidden-cand-count');
+    const statusEl = document.getElementById('hidden-status');
+    
+    if (countEl) countEl.textContent = count;
+    if (statusEl) {
+        statusEl.textContent = count;
+        statusEl.className = 'status-indicator ' + (count > 0 ? 'on' : 'off');
+    }
+    
+    const list = document.getElementById('hidden-candidates-list');
+    if (!list) return;
+    
+    if (count === 0) {
+        list.innerHTML = `
+            <div class="no-results" style="padding:20px;text-align:center;">
+                <i class="fas fa-check-circle" style="color:var(--teal);font-size:24px;display:block;margin-bottom:8px;"></i>
+                <span class="lang-sw">Hakuna mgombea aliyefichwa</span>
+                <span class="lang-en">No hidden candidates</span>
+            </div>
+        `;
+        return;
+    }
+    
+    if (!showHiddenList) {
+        list.innerHTML = `
+            <div class="no-results" style="padding:20px;text-align:center;">
+                <i class="fas fa-eye-slash" style="color:var(--amber);font-size:24px;display:block;margin-bottom:8px;"></i>
+                <span class="lang-sw">Bonyeza "Onyesha Waliofichwa"</span>
+                <span class="lang-en">Click "Show Hidden" to view</span>
+            </div>
+        `;
+        return;
+    }
+    
+    list.innerHTML = hiddenCandidates.map(c => {
+        const imgSrc = c.image || `https://i.pravatar.cc/150?img=${c.id}`;
+        return `
+            <div class="admin-row-item" style="border-bottom:1px solid var(--gray-200);padding:10px 0;">
+                <div class="item-content" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;flex:1;">
+                    <img src="${imgSrc}" alt="${c.name}" 
+                         onerror="this.src='https://i.pravatar.cc/150?img=1'" 
+                         style="width:45px;height:45px;border-radius:50%;object-fit:cover;border:2px solid var(--gray-200);" />
+                    <div style="display:flex;flex-direction:column;">
+                        <strong style="font-size:14px;">${c.name}</strong>
+                        <span style="font-size:12px;color:var(--text-muted);">
+                            ${c.role} ${c.party ? '· ' + c.party : ''}
+                        </span>
+                    </div>
+                    <span style="color:var(--navy);font-weight:600;font-size:13px;margin-left:auto;">
+                        ${c.votes || 0} <span class="lang-sw">kura</span><span class="lang-en">votes</span>
+                    </span>
+                    <span class="status-pill status-closed" style="font-size:10px;padding:2px 10px;">
+                        <i class="fas fa-eye-slash"></i> 
+                        <span class="lang-sw">Imefichwa</span>
+                        <span class="lang-en">Hidden</span>
+                    </span>
+                </div>
+                <div style="display:flex;gap:4px;flex-wrap:wrap;">
+                    <button class="btn-sm btn-success" onclick="unhideCandidate('${c.id}')" 
+                            style="padding:4px 10px;font-size:11px;background:var(--teal);border-color:var(--teal);">
+                        <i class="fas fa-eye"></i> 
+                        <span class="lang-sw">Onyesha</span>
+                        <span class="lang-en">Show</span>
+                    </button>
+                    <button class="btn-sm btn-edit" onclick="openEditModal('${c.id}')" style="padding:4px 10px;font-size:11px;">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="btn-sm delete-btn" onclick="removeCandidate('${c.id}')" style="padding:4px 10px;font-size:11px;">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+// ============================================================
+// TOGGLE HIDDEN LIST
+// ============================================================
+
+function toggleHiddenList() {
+    showHiddenList = !showHiddenList;
+    renderHiddenCandidates();
+    
+    const btn = document.getElementById('toggle-hidden-btn');
+    if (btn) {
+        if (showHiddenList) {
+            btn.innerHTML = `
+                <i class="fas fa-eye-slash"></i> 
+                <span class="lang-sw">Ficha Orodha</span>
+                <span class="lang-en">Hide List</span>
+            `;
+            btn.className = 'btn-sm btn-results-toggle off';
+        } else {
+            btn.innerHTML = `
+                <i class="fas fa-eye"></i> 
+                <span class="lang-sw">Onyesha Waliofichwa</span>
+                <span class="lang-en">Show Hidden</span>
+            `;
+            btn.className = 'btn-sm btn-results-toggle';
+        }
+    }
+}
+
+// ============================================================
+// HIDE / UNHIDE SINGLE CANDIDATE
+// ============================================================
+
+async function hideCandidate(candidateId) {
+    const candidate = allCandidates.find(c => c.id === candidateId);
+    if (!candidate) {
+        alert('Mgombea hapatikani!');
+        return;
+    }
+    
+    if (candidate.hidden) {
+        alert(`"${candidate.name}" tayari amefichwa!`);
+        return;
+    }
+    
+    if (!confirm(`Ficha mgombea "${candidate.name}" (${candidate.role})?`)) return;
+    
+    try {
+        await api('PATCH', `/api/admin/candidates/${candidateId}`, { hidden: true });
+        await loadAdminData();
+        refreshAllUI();
+        renderHiddenCandidates();
+        showAlert('add-cand-err', `✓ "${candidate.name}" amefichwa!`, 'success');
+        setTimeout(() => hideAlert('add-cand-err'), 3000);
+    } catch (err) {
+        alert('Error: ' + err.message);
+    }
+}
+
+async function unhideCandidate(candidateId) {
+    const candidate = allCandidates.find(c => c.id === candidateId);
+    if (!candidate) {
+        alert('Mgombea hapatikani!');
+        return;
+    }
+    
+    if (!candidate.hidden) {
+        alert(`"${candidate.name}" tayari anaonekana!`);
+        return;
+    }
+    
+    if (!confirm(`Onyesha mgombea "${candidate.name}" (${candidate.role}) tena?`)) return;
+    
+    try {
+        await api('PATCH', `/api/admin/candidates/${candidateId}`, { hidden: false });
+        await loadAdminData();
+        refreshAllUI();
+        renderHiddenCandidates();
+        showAlert('add-cand-err', `✓ "${candidate.name}" ameonekana tena!`, 'success');
+        setTimeout(() => hideAlert('add-cand-err'), 3000);
+    } catch (err) {
+        alert('Error: ' + err.message);
+    }
+}
+
+// ============================================================
+// HIDE / UNHIDE ALL CANDIDATES
+// ============================================================
+
+async function hideAllCandidates() {
+    const visibleCandidates = getVisibleCandidates();
+    
+    if (visibleCandidates.length === 0) {
+        alert('Hakuna mgombea anayeonekana wa kuficha!');
+        return;
+    }
+    
+    if (!confirm(`Ficha wagombea WOTE ${visibleCandidates.length} wanaoonekana?`)) return;
+    
+    try {
+        let successCount = 0;
+        for (const c of visibleCandidates) {
+            await api('PATCH', `/api/admin/candidates/${c.id}`, { hidden: true });
+            successCount++;
+        }
+        await loadAdminData();
+        refreshAllUI();
+        renderHiddenCandidates();
+        alert(`✓ Wagombea ${successCount} wamefichwa!`);
+    } catch (err) {
+        alert('Error: ' + err.message);
+    }
+}
+
+async function unhideAllCandidates() {
+    const hiddenCandidates = getHiddenCandidates();
+    
+    if (hiddenCandidates.length === 0) {
+        alert('Hakuna mgombea aliyefichwa wa kuonesha!');
+        return;
+    }
+    
+    if (!confirm(`Onyesha wagombea WOTE ${hiddenCandidates.length} waliofichwa?`)) return;
+    
+    try {
+        let successCount = 0;
+        for (const c of hiddenCandidates) {
+            await api('PATCH', `/api/admin/candidates/${c.id}`, { hidden: false });
+            successCount++;
+        }
+        await loadAdminData();
+        refreshAllUI();
+        renderHiddenCandidates();
+        alert(`✓ Wagombea ${successCount} wameonekana tena!`);
+    } catch (err) {
+        alert('Error: ' + err.message);
+    }
+}
+
+// ============================================================
+// HIDE / UNHIDE BY ROLE
+// ============================================================
+
+async function hideByRole() {
+    if (allRoles.length === 0) {
+        alert('Hakuna nafasi zilizopo!');
+        return;
+    }
+    
+    const roleSelect = prompt(
+        'Chagua nafasi (role) ya wagombea unataka kuficha:\n\n' + 
+        allRoles.map((r, i) => `${i+1}. ${r}`).join('\n') + 
+        '\n\nAndika namba au jina la nafasi:'
+    );
+    
+    if (!roleSelect) return;
+    
+    let selectedRole = roleSelect;
+    const num = parseInt(roleSelect);
+    if (!isNaN(num) && num >= 1 && num <= allRoles.length) {
+        selectedRole = allRoles[num - 1];
+    }
+    
+    const candidatesToHide = allCandidates.filter(c => c.role === selectedRole && !c.hidden);
+    
+    if (candidatesToHide.length === 0) {
+        alert(`Hakuna mgombea katika nafasi "${selectedRole}" anayeonekana.`);
+        return;
+    }
+    
+    if (!confirm(`Ficha wagombea ${candidatesToHide.length} katika nafasi "${selectedRole}"?`)) return;
+    
+    try {
+        let successCount = 0;
+        for (const c of candidatesToHide) {
+            await api('PATCH', `/api/admin/candidates/${c.id}`, { hidden: true });
+            successCount++;
+        }
+        await loadAdminData();
+        refreshAllUI();
+        renderHiddenCandidates();
+        alert(`✓ Wagombea ${successCount} wamefichwa katika nafasi "${selectedRole}"!`);
+    } catch (err) {
+        alert('Error: ' + err.message);
+    }
+}
+
+// ============================================================
+// ADD HIDE/SHOW BUTTONS TO CANDIDATE LIST
+// ============================================================
+
+function addHideButtonsToCandidates() {
+    const candidateItems = document.querySelectorAll('#admin-cand-list .admin-row-item');
+    
+    candidateItems.forEach(item => {
+        if (item.querySelector('.hide-btn-container')) return;
+        
+        const checkbox = item.querySelector('.candidate-checkbox');
+        if (!checkbox) return;
+        const candidateId = checkbox.dataset.id;
+        
+        const candidate = allCandidates.find(c => c.id === candidateId);
+        if (!candidate) return;
+        
+        const buttonContainer = item.querySelector('span:last-child');
+        if (!buttonContainer) return;
+        
+        const hideContainer = document.createElement('span');
+        hideContainer.className = 'hide-btn-container';
+        hideContainer.style.display = 'flex';
+        hideContainer.style.gap = '4px';
+        hideContainer.style.alignItems = 'center';
+        
+        if (candidate.hidden) {
+            hideContainer.innerHTML = `
+                <button class="btn-sm btn-success" onclick="unhideCandidate('${candidateId}')" 
+                        style="padding:4px 8px;font-size:11px;background:var(--teal);border-color:var(--teal);">
+                    <i class="fas fa-eye"></i> <span class="lang-sw">Onyesha</span><span class="lang-en">Show</span>
+                </button>
+                <span class="status-pill status-closed" style="font-size:9px;padding:2px 6px;">
+                    🔒 <span class="lang-sw">Imefichwa</span><span class="lang-en">Hidden</span>
+                </span>
+            `;
+        } else {
+            hideContainer.innerHTML = `
+                <button class="btn-sm btn-warning" onclick="hideCandidate('${candidateId}')" 
+                        style="padding:4px 8px;font-size:11px;background:var(--amber);border-color:var(--amber);">
+                    <i class="fas fa-eye-slash"></i> <span class="lang-sw">Ficha</span><span class="lang-en">Hide</span>
+                </button>
+            `;
+        }
+        
+        buttonContainer.appendChild(hideContainer);
+    });
+}
+
+// ============================================================
+// OVERRIDE FUNCTIONS
+// ============================================================
+
+// Override loadAdminData
+// ============================================================
+// HOOK INTO EXISTING FUNCTIONS - SAFE WAY
+// ============================================================
+
+// HAKIKISHA FUNCTIONS ZIPO KABLA YA KUZITUMIA
+console.log('⏳ Waiting for functions to be defined...');
+
+// TUMIA setInterval KUSUBIRI loadAdminData NA filterCandidates
+const waitForFuncs = setInterval(() => {
+    if (typeof loadAdminData === 'function' && typeof filterCandidates === 'function') {
+        clearInterval(waitForFuncs);
+        console.log('✅ Functions found! Setting up hooks...');
+        
+        // HIFADHI ORIGINAL FUNCTIONS
+        const _origLoadAdmin = loadAdminData;
+        const _origFilterCand = filterCandidates;
+        
+        // UNDA FUNCTIONS MPYA ZINAZOITA ZA AWALI
+        loadAdminData = async function() {
+            await _origLoadAdmin();
+            renderHiddenCandidates();
+            setTimeout(addHideButtonsToCandidates, 100);
+        };
+        
+        filterCandidates = function() {
+            _origFilterCand();
+            setTimeout(addHideButtonsToCandidates, 100);
+        };
+        
+        console.log('✅ Hooks installed successfully!');
+    }
+}, 100);
+
+// ============================================================
+// INITIALIZE
+// ============================================================
+
+console.log('✅ Hidden Candidates Management imeanzishwa!');
+console.log('📌 Functions:');
+console.log('   - hideCandidate(id) - Ficha mgombea');
+console.log('   - unhideCandidate(id) - Onyesha mgombea');
+console.log('   - hideAllCandidates() - Ficha wote');
+console.log('   - unhideAllCandidates() - Onyesha wote');
+console.log('   - hideByRole() - Ficha kwa nafasi');
+console.log('   - toggleHiddenList() - Onyesha/kuficha orodha');</script>
 
                     <!-- Candidates -->
                     <section class="admin-card">
@@ -2014,9 +2460,11 @@
                         <div id="audit-log" class="audit-wrap"></div>
                     </section>
                 </div>
+                
             </div>
         </main>
     </div>
+    
 
     <!-- ===== EDIT MEMBER MODAL ===== -->
     <div class="modal-overlay" id="edit-member-modal">
@@ -2628,7 +3076,7 @@
         // ============================================================
         const SERVER_IP = '192.168.10.75';
         const SERVER_PORT = 3000;
-        const API = 'https://single-hazing-remorse.ngrok-free.dev';
+        const API = 'https://manly-abridge-slacks.ngrok-free.dev';
         console.log(`🌐 Server URL: ${API}`);
 
         // ============================================================
@@ -2653,53 +3101,32 @@
         const CACHE_DURATION = 1000; // SEKUNDE 1
 
         async function api(method, path, body) {
-            const cacheKey = `${method}:${path}:${JSON.stringify(body || {})}`;
-            
-            if (method === 'GET' && apiCache.has(cacheKey)) {
-                const cached = apiCache.get(cacheKey);
-                if (Date.now() - cached.timestamp < CACHE_DURATION) {
-                    return cached.data;
-                }
-            }
-            
-            try {
-                const opts = {
-                    method,
-                    headers: { 'Content-Type': 'application/json' }
-                };
-                if (body) opts.body = JSON.stringify(body);
-                
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 5000);
-                opts.signal = controller.signal;
-                
-                const url = API + path;
-                console.log(`📡 ${method} ${url}`);
-                
-                const res = await fetch(url, opts);
-                clearTimeout(timeoutId);
-                
-                if (!res.ok) {
-                    const error = await res.json().catch(() => ({ error: 'Request failed' }));
-                    throw new Error(error.error || 'Request failed');
-                }
-                
-                const data = await res.json();
-                updateSyncStatus(true);
-                
-                if (method === 'GET') {
-                    apiCache.set(cacheKey, { data, timestamp: Date.now() });
-                }
-                
-                return data;
-            } catch (err) {
-                console.error('API Error:', err);
-                updateSyncStatus(false);
-                throw err;
-            }
+    try {
+        const opts = {
+            method,
+            headers: { 'Content-Type': 'application/json' }
+        };
+        if (body) opts.body = JSON.stringify(body);
+        
+        const url = API + path;
+        console.log(`📡 ${method} ${url}`);
+        
+        const res = await fetch(url, opts);
+        
+        if (!res.ok) {
+            const error = await res.json().catch(() => ({ error: 'Request failed' }));
+            throw new Error(error.error || 'Request failed');
         }
-
-        // ============================================================
+        
+        const data = await res.json();
+        updateSyncStatus(true);
+        return data;
+    } catch (err) {
+        console.error('API Error:', err);
+        updateSyncStatus(false);
+        throw err;
+    }
+}        // ============================================================
         // SORTING
         // ============================================================
         let memberSortField = 'name';
@@ -3000,80 +3427,106 @@
         const MAX_RECONNECT_ATTEMPTS = 5;
         let lastUpdateTime = 0;
 
-        function connectSSE() {
+       function connectSSE() {
+    try {
+        const url = API + '/api/events';
+        console.log('📡 Connecting to SSE:', url);
+        
+        // HAKIKISHA EVENTSOURCE INAFANYA KAZI SAWA
+        if (eventSource) {
+            eventSource.close();
+            eventSource = null;
+        }
+        
+        eventSource = new EventSource(url);
+        reconnectAttempts = 0;
+        
+        eventSource.onopen = function() {
+            console.log('✅ SSE Connection opened');
+            isLive = true;
+            updateSyncStatus(true);
+            showLiveIndicator('🟢 Connected to live updates');
+            // ONYESHA STATUS LIVE KWA MUDA MREFU
+            if (indicatorTimeout) clearTimeout(indicatorTimeout);
+        };
+        
+        eventSource.onmessage = function(event) {
             try {
-                const url = API + '/api/events';
-                console.log('📡 Connecting to SSE:', url);
-                eventSource = new EventSource(url);
-                reconnectAttempts = 0;
+                const data = JSON.parse(event.data);
+                console.log('📨 SSE Message:', data);
                 
-                eventSource.onopen = function() {
-                    console.log('✅ SSE Connection opened');
-                    isLive = true;
-                    updateSyncStatus(true);
-                    showLiveIndicator('🟢 Connected to live updates');
-                };
+                // KAMA NI HEARTBEAT, USIFANYE CHOCHOTE
+                if (data.type === 'heartbeat') {
+                    console.log('💓 Heartbeat received');
+                    return;
+                }
                 
-                eventSource.onmessage = function(event) {
-                    try {
-                        const data = JSON.parse(event.data);
-                        console.log('📨 SSE Message:', data);
-                        if (data.type === 'update') {
-                            apiCache.clear();
-                            console.log('🔄 Live update received! Refreshing data...');
-                            refreshAllUI();
-                            showLiveIndicator('🔄 Data updated live');
-                        }
-                    } catch (e) {
-                        console.error('Error parsing SSE message:', e);
-                    }
-                };
-                
-                eventSource.onerror = function(error) {
-                    console.warn('⚠️ SSE Error:', error);
-                    isLive = false;
-                    updateSyncStatus(false);
-                    
-                    reconnectAttempts++;
-                    if (reconnectAttempts < MAX_RECONNECT_ATTEMPTS) {
-                        const delay = Math.min(1000 * reconnectAttempts, 5000);
-                        setTimeout(() => {
-                            if (!isLive) {
-                                console.log(`🔄 Reconnecting SSE (attempt ${reconnectAttempts + 1})...`);
-                                if (eventSource) {
-                                    eventSource.close();
-                                }
-                                connectSSE();
-                            }
-                        }, delay);
-                    } else {
-                        console.log('📡 Switching to polling fallback...');
-                        startPolling();
-                    }
-                };
+                if (data.type === 'update' || data.action === 'data_updated') {
+                    apiCache.clear();
+                    console.log('🔄 Live update received! Refreshing data...');
+                    refreshAllUI();
+                    showLiveIndicator('🔄 Data updated live');
+                }
             } catch (e) {
-                console.error('❌ Failed to connect SSE:', e);
+                console.error('Error parsing SSE message:', e);
+            }
+        };
+        
+        eventSource.onerror = function(error) {
+            console.warn('⚠️ SSE Error:', error);
+            
+            // USIIFUNGE CONNECTION KAMA NI ERROR YA NETWORK
+            if (eventSource && eventSource.readyState === EventSource.CLOSED) {
                 isLive = false;
                 updateSyncStatus(false);
-                startPolling();
+                
+                reconnectAttempts++;
+                if (reconnectAttempts < MAX_RECONNECT_ATTEMPTS) {
+                    const delay = Math.min(2000 * reconnectAttempts, 10000);
+                    console.log(`🔄 Reconnecting SSE in ${delay}ms (attempt ${reconnectAttempts + 1})...`);
+                    setTimeout(() => {
+                        if (!isLive) {
+                            connectSSE();
+                        }
+                    }, delay);
+                } else {
+                    console.log('📡 Max reconnects reached. Switching to polling fallback...');
+                    startPolling();
+                }
             }
-        }
+        };
+    } catch (e) {
+        console.error('❌ Failed to connect SSE:', e);
+        isLive = false;
+        updateSyncStatus(false);
+        startPolling();
+    }
+}
 
         let pollingInterval = null;
 
-        function startPolling() {
-            if (pollingInterval) return;
-            console.log('📡 Using polling fallback (every 1 second)');
-            pollingInterval = setInterval(async () => {
-                try {
-                    const data = await api('GET', '/api/election');
-                    updateSyncStatus(true);
-                    refreshAllUI();
-                } catch (e) {
-                    updateSyncStatus(false);
+       function startPolling() {
+    if (pollingInterval) return;
+    console.log('📡 Using polling fallback (every 3 seconds)');
+    pollingInterval = setInterval(async () => {
+        try {
+            // USIIITE RESULTS MARA NYINGI - ITAITA UPDATE TU
+            const data = await api('GET', '/api/election');
+            if (data.status) {
+                updateSyncStatus(true);
+                // REFRESH UI KAMA INAHITAJI
+                if (document.querySelector('.page.active')) {
+                    const pageId = document.querySelector('.page.active').id;
+                    if (pageId === 'page-admin' || pageId === 'page-results') {
+                        refreshAllUI();
+                    }
                 }
-            }, 1000); // SEKUNDE 1
+            }
+        } catch (e) {
+            updateSyncStatus(false);
         }
+    }, 3000); // SEKUNDE 3 - SI 1
+}
 
         function disconnectSSE() {
             if (eventSource) {
@@ -3172,38 +3625,50 @@
         let refreshLock = false;
         let refreshQueue = false;
 
-        async function refreshAllUI() {
-            if (refreshLock) {
-                refreshQueue = true;
-                return;
-            }
-            
-            refreshLock = true;
-            try {
-                const syncData = await api('GET', '/api/sync');
-                db = syncData;
-                const activePage = document.querySelector('.page.active');
-                if (activePage) {
-                    const pageId = activePage.id.replace('page-', '');
-                    switch (pageId) {
-                        case 'admin':
-                            await loadAdminData();
-                            break;
-                        case 'ballot':
-                            if (currentUser && !currentUser.voted) {
-                                await loadBallot();
-                            }
-                            break;
-                        case 'results':
-                            await loadResultsAdmin();
-                            break;
-                        case 'voted':
-                            updateResultsAccessUI();
-                            break;
-                        default:
-                            break;
+       let lastRefreshTime = 0;
+const MIN_REFRESH_INTERVAL = 2000; // SEKUNDE 2
+
+async function refreshAllUI() {
+    // USIITE MARA NYINGI SANA
+    const now = Date.now();
+    if (now - lastRefreshTime < MIN_REFRESH_INTERVAL) {
+        console.log('⏳ Skipping refresh - too frequent');
+        return;
+    }
+    lastRefreshTime = now;
+    
+    if (refreshLock) {
+        refreshQueue = true;
+        return;
+    }
+    
+    refreshLock = true;
+    try {
+        const syncData = await api('GET', '/api/sync');
+        db = syncData;
+        const activePage = document.querySelector('.page.active');
+        if (activePage) {
+            const pageId = activePage.id.replace('page-', '');
+            switch (pageId) {
+                case 'admin':
+                    await loadAdminData();
+                    break;
+                case 'ballot':
+                    if (currentUser && !currentUser.voted) {
+                        await loadBallot();
                     }
-                }
+                    break;
+                case 'results':
+                    await loadResultsAdmin();
+                    break;
+                case 'voted':
+                    updateResultsAccessUI();
+                    break;
+                default:
+                    break;
+            }
+        }
+        // ... rest of code
                 const title = document.getElementById('ballot-election-title');
                 if (title && syncData.election) {
                     title.textContent = syncData.election.title;
@@ -3297,33 +3762,37 @@
         // ============================================================
         // BALLOT
         // ============================================================
-        async function loadBallot() {
-            showPage('ballot');
-            try {
-                const [election, candidates] = await Promise.all([
-                    api('GET', '/api/election'),
-                    api('GET', '/api/candidates')
-                ]);
-                $('ballot-election-title').textContent = election.title;
-                $('ballot-user-badge').textContent = currentUser.name + 'Mwnachama';
+       async function loadBallot() {
+    showPage('ballot');
+    try {
+        const [election, candidates] = await Promise.all([
+            api('GET', '/api/election'),
+            api('GET', '/api/candidates')
+        ]);
+        $('ballot-election-title').textContent = election.title;
+        $('ballot-user-badge').textContent = currentUser.name + '   (Mwnachama)';
 
-                const groups = {};
-                candidates.forEach(c => {
-                    if (!groups[c.role]) groups[c.role] = [];
-                    groups[c.role].push(c);
-                });
+        const groups = {};
+        candidates.forEach(c => {
+            // RUKA WAGOMBEA WALIOFICHWA
+            if (c.hidden) return;
+            if (!groups[c.role]) groups[c.role] = [];
+            groups[c.role].push(c);
+        });
 
                 roles = Object.keys(groups);
                 candidatesByRole = groups;
                 selectedByRole = {};
 
                 if (currentUser && currentUser.votedFor && currentUser.votedFor.length > 0) {
-                    candidates.forEach(c => {
-                        if (currentUser.votedFor.includes(c.role)) {
-                            selectedByRole[c.role] = c.id;
-                        }
-                    });
-                }
+    candidates.forEach(c => {
+        // RUKA WAGOMBEA WALIOFICHWA
+        if (c.hidden) return;
+        if (currentUser.votedFor.includes(c.role)) {
+            selectedByRole[c.role] = c.id;
+        }
+    });
+}
 
                 const tabContainer = $('role-tabs-container');
                 const panelContainer = $('role-panels-container');
@@ -3405,92 +3874,116 @@
         // ============================================================
         // CAST VOTES
         // ============================================================
-        async function castVotes() {
-            hideAlert('ballot-error');
-            hideAlert('ballot-success');
-            hideAlert('ballot-warning');
+       async function castVotes() {
+    hideAlert('ballot-error');
+    hideAlert('ballot-success');
+    hideAlert('ballot-warning');
 
-            const selections = [];
-            for (const role of roles) {
-                if (currentUser && currentUser.votedFor && currentUser.votedFor.includes(role)) {
-                    continue;
-                }
-                if (!selectedByRole[role]) {
-                    showAlert('ballot-error', `Tafadhali chagua mgombea kwa "${role}".`);
-                    return;
-                }
-                selections.push({ role, candidateId: selectedByRole[role] });
-            }
+    // KUSANYA KURA ZOTE
+    const selections = [];
+    for (const role of roles) {
+        if (currentUser && currentUser.votedFor && currentUser.votedFor.includes(role)) {
+            continue;
+        }
+        if (!selectedByRole[role]) {
+            showAlert('ballot-error', `Tafadhali chagua mgombea kwa "${role}".`);
+            return;
+        }
+        selections.push({ role, candidateId: selectedByRole[role] });
+    }
 
-            if (selections.length === 0) {
-                showAlert('ballot-warning', 'Huna nafasi iliyobaki ya kupiga kura. Umepiga zote!', 'info');
-                return;
-            }
+    if (selections.length === 0) {
+        showAlert('ballot-warning', 'Umepiga kura zote tayari!', 'info');
+        return;
+    }
 
-            const btn = $('vote-btn');
-            btn.disabled = true;
-            btn.innerHTML = '<span class="spinner"></span>Inarekodi…';
+    const btn = $('vote-btn');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span>Inarekodi kura zote...';
 
-            let successCount = 0;
-            let errors = [];
-
-            try {
-                const election = await api('GET', '/api/election');
-                if (election.status !== 'open') {
-                    throw new Error('Kura zimefungwa. Samahani.');
-                }
-
-                const votePromises = selections.map(async (sel) => {
-                    try {
-                        const result = await api('POST', '/api/vote', {
-                            memberId: currentUser.id,
-                            candidateId: sel.candidateId
-                        });
-                        return { success: true, result, role: sel.role };
-                    } catch (err) {
-                        return { success: false, error: err.message, role: sel.role };
-                    }
-                });
-
-                const results = await Promise.all(votePromises);
-                
-                results.forEach(result => {
-                    if (result.success) {
-                        successCount++;
-                        if (result.result.member) {
-                            currentUser.votedFor = result.result.member.votedFor;
-                            currentUser.voted = result.result.member.voted;
-                        }
-                    } else {
-                        errors.push(`${result.role}: ${result.error}`);
-                    }
-                });
-
-                if (successCount === selections.length) {
-                    currentUser.voted = true;
-                    showAlert('ballot-success', `✓ Kura zote ${successCount} zimepigiwa kikamilifu!`, 'success');
-                    setTimeout(() => {
-                        showPage('voted');
-                    }, 1000);
-                } else if (successCount > 0) {
-                    showAlert('ballot-warning',
-                        `✓ Umepiga kura ${successCount} kati ya ${selections.length}. Tafadhali jaribu tena kwa zilizobaki.`,
-                        'info');
-                    setTimeout(async () => {
-                        await loadBallot();
-                    }, 1500);
-                } else {
-                    showAlert('ballot-error', `Imeshindwa kupiga kura: ${errors.join('; ')}`);
-                }
-
-            } catch (err) {
-                showAlert('ballot-error', err.message);
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = '<i class="fas fa-check"></i> Tuma Kura Zote';
-            }
+    try {
+        const election = await api('GET', '/api/election');
+        if (election.status !== 'open') {
+            throw new Error('Kura zimefungwa. Samahani.');
         }
 
+        // ==========================================================
+        // Tuma KURA ZOTE kwa wakati mmoja
+        // ==========================================================
+        const votePromises = selections.map(async (sel) => {
+            try {
+                const result = await api('POST', '/api/vote', {
+                    memberId: currentUser.id,
+                    candidateId: sel.candidateId
+                });
+                return { success: true, role: sel.role };
+            } catch (err) {
+                return { success: false, role: sel.role, error: err.message };
+            }
+        });
+
+        // SUBIRI KURA ZOTE ZIMALIZIKE
+        const results = await Promise.all(votePromises);
+        
+        // HESABU
+        const successCount = results.filter(r => r.success).length;
+
+        // ==========================================================
+        // KURA ZOTE ZIMEFANIKIWA -> NENDA VOTED
+        // HATA KAMA ZINGINE ZIMESHINDWA, BADO NENDA VOTED
+        // ==========================================================
+        if (successCount === selections.length) {
+            // KURA ZOTE ZIMEFANIKIWA!
+            currentUser.voted = true;
+            currentUser.votedFor = selections.map(s => s.role);
+            
+            showAlert('ballot-success', 
+                `✅ Kura zote ${successCount} zimepigiwa kikamilifu! Asante kwa kushiriki.`, 
+                'success'
+            );
+            
+            setTimeout(() => {
+                showPage('voted');
+            }, 1500);
+            
+        } else if (successCount > 0) {
+            // KURA ZINGINE ZIMEFANIKIWA, ZINGINE ZIMESHINDWA
+            currentUser.voted = true;
+            currentUser.votedFor = selections.filter((s, i) => results[i].success).map(s => s.role);
+            
+            const failedRoles = results.filter(r => !r.success).map(r => r.role);
+            
+            showAlert('ballot-warning', 
+                `⚠️ Kura ${successCount} zimefanikiwa, lakini ${selections.length - successCount} zimeshindwa (${failedRoles.join(', ')}). ` +
+                `Tafadhali wasiliana na msimamizi.`,
+                'warning'
+            );
+            
+            // BADO NENDA VOTED - MSIRUDI KUPIGA TENA!
+            setTimeout(() => {
+                showPage('voted');
+            }, 2000);
+            
+        } else {
+            // KURA ZOTE ZIMESHINDWA
+            const errors = results.map(r => `${r.role}: ${r.error}`).join('; ');
+            showAlert('ballot-error', 
+                `❌ Kura zote zimeshindwa kupigwa.\n${errors}\nTafadhali wasiliana na msimamizi.`, 
+                'error'
+            );
+            
+            // BADO NENDA VOTED - MSIRUDI KUPIGA TENA
+            setTimeout(() => {
+                showPage('voted');
+            }, 3000);
+        }
+
+    } catch (err) {
+        showAlert('ballot-error', `❌ Imeshindwa: ${err.message}`);
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-redo"></i> Jaribu Tena';
+    }
+}
         // ============================================================
         // RESULTS
         // ============================================================
@@ -4171,16 +4664,17 @@
             }
         }
 
-        function filterCandidates() {
-            const input = $('candidate-search');
-            if (input) candidateSearchTerm = input.value.toLowerCase().trim();
-            const filtered = candidateSearchTerm ?
-                allCandidates.filter(c =>
-                    c.name.toLowerCase().includes(candidateSearchTerm) ||
-                    c.role.toLowerCase().includes(candidateSearchTerm) ||
-                    (c.party && c.party.toLowerCase().includes(candidateSearchTerm)
-                    )) :
-                allCandidates;
+       function filterCandidates() {
+    const input = $('candidate-search');
+    if (input) candidateSearchTerm = input.value.toLowerCase().trim();
+    // ONYESHA WAGOMBEA WOTE, HATA WALIOFICHWA
+    const filtered = candidateSearchTerm ?
+        allCandidates.filter(c =>
+            c.name.toLowerCase().includes(candidateSearchTerm) ||
+            c.role.toLowerCase().includes(candidateSearchTerm) ||
+            (c.party && c.party.toLowerCase().includes(candidateSearchTerm))
+        ) :
+        allCandidates; // HAPA HAKUNA KUPUUZA WALIOFICHWA
             const list = $('admin-cand-list');
             if (list) {
                 if (filtered.length === 0) {
